@@ -6,17 +6,15 @@ package fsqint.service.entity;
 public class Venue {
     private String id;
     private String name;
-    private String url;
     private Location location;
 
     public Venue() {
         super();
     }
 
-    public Venue(String id, String name, String url, Location location) {
+    public Venue(String id, String name, Location location) {
         this.id = id;
         this.name = name;
-        this.url = url;
         this.location = location;
     }
 
@@ -34,14 +32,6 @@ public class Venue {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public Location getLocation() {

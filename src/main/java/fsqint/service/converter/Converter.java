@@ -5,11 +5,11 @@ import fsqint.service.entity.Venue;
 import fsqint.service.exception.ConversionException;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.node.MissingNode;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by amin on 25/07/15.
@@ -22,17 +22,17 @@ import java.util.Optional;
 public class Converter {
     public static List<Venue> convert (String json) {
         List<Venue> venueList = new ArrayList<>();
+        if (json != null) {
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                JsonNode root = objectMapper.readTree(json);
+                JsonNode venues = root.findPath("venues");
 
-        try {
+                venues.getElements().forEachRemaining(venue -> venueList.add(convert(venue)));
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode root = objectMapper.readTree(json);
-            JsonNode venues = root.findPath("venues");
-
-            venues.getElements().forEachRemaining(venue -> venueList.add(convert(venue)));
-
-        }catch (IOException e){
-            throw new ConversionException(e);
+            } catch (IOException e) {
+                throw new ConversionException(e);
+            }
         }
 
         return venueList;
@@ -40,18 +40,18 @@ public class Converter {
 
     private static Venue convert(JsonNode json){
         Venue venue = new Venue();
-        Location location = new Location();
-        venue.setLocation(location);
 
         venue.setId(json.get("id").asText());
         venue.setName(json.get("name").asText());
 
-        Optional.ofNullable(json.get("url")).ifPresent(url -> venue.setUrl(url.asText()));
-
         JsonNode jsonLocation = json.findPath("location");
-        location.setLat(jsonLocation.get("lat").asDouble());
-        location.setLng(jsonLocation.get("lng").asDouble());
+        if (!(jsonLocation instanceof MissingNode)) {
+            Location location = new Location();
+            venue.setLocation(location);
 
+            location.setLat(jsonLocation.get("lat").asDouble());
+            location.setLng(jsonLocation.get("lng").asDouble());
+        }
         return venue;
     }
 }
