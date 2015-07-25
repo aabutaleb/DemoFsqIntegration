@@ -4,6 +4,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import fsqint.Utils;
+import fsqint.service.converter.Converter;
 import fsqint.service.entity.Venue;
 import fsqint.service.exception.FoursquareServiceException;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +39,7 @@ public class FoursquareApi {
 
     public List<Venue> findVenues(final String name){
         Client client = Client.create();
-        final WebResource webResource2 = client.resource(Utils.getServiceURL(getBaseURL()+"/venues/search", id, secret, "near="+name));
+        final WebResource webResource2 = client.resource(Utils.getServiceURL(getBaseURL() + "/venues/search", id, secret, "near=" + name));
 
         final ClientResponse rs = webResource2.accept("application/json").get(ClientResponse.class);
 
@@ -46,7 +47,7 @@ public class FoursquareApi {
             throw new FoursquareServiceException("Error: Code: " + rs.getStatus());
         }
 
-        return null;
+        return Converter.convert(rs.getEntity(String.class));
     }
 
     private String getBaseURL(){
