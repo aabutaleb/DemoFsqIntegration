@@ -13,4 +13,9 @@ public class Utils {
     public static final String formatCurrentDate(){
         return FSQ_FORMATTER.print(DateTime.now());
     }
+
+    public static String getServiceURL(String url, String id, String secret, String query) {
+        return String.format("%s?client_id=%s&client_secret=%s&v=%s&%s",
+                url, id, secret, Utils.formatCurrentDate(), query);
+    }
 }

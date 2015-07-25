@@ -32,18 +32,13 @@ public class FoursquareApi {
     @Value("${4sq.server.version}")
     private String serviceVersion;
 
-    private final String baseURL;
-
     public FoursquareApi() {
         super();
-
-        baseURL = String.format("%s/%s", serviceURL, serviceVersion);
     }
 
     public List<Venue> findVenues(final String name){
         Client client = Client.create();
-        final WebResource webResource2 = client.resource(String.format("%s/venues/search?client_id=%s&client_secret=%s&v=%s&near=",
-                baseURL, id, secret, Utils.formatCurrentDate()));
+        final WebResource webResource2 = client.resource(Utils.getServiceURL(getBaseURL()+"/venues/search", id, secret, "near="+name));
 
         final ClientResponse rs = webResource2.accept("application/json").get(ClientResponse.class);
 
@@ -52,5 +47,9 @@ public class FoursquareApi {
         }
 
         return null;
+    }
+
+    private String getBaseURL(){
+        return String.format("%s/%s", serviceURL, serviceVersion);
     }
 }
