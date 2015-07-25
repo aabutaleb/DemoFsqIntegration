@@ -7,6 +7,7 @@
 # How to run this project
 To run this project you just need to execute this in the command line:
 "mvn clean spring-boot:run"
+After this, just type in your browser "http://localhost:8080" and you'll see the app.
 
 This will run Spring boot's context and start an embedded application server to make possible to serve the web.
 It's not necessary to deploy anything anywhere.
