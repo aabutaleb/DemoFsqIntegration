@@ -26,8 +26,8 @@ myApp.controller('MainController', ['$scope', "$http", function($scope, $http) {
 
                     google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
-                            infowindow.setContent(locations[i][0]);
-                            infowindow.open($scope.map, marker);
+                            $scope.infowindow.setContent(locations[i].name);
+                            $scope.infowindow.open($scope.map, marker);
                         }
                     })(marker, i));
                 }
