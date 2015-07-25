@@ -23,6 +23,8 @@ public class FsqController {
     @RequestMapping(value = "/find/{query}", method = RequestMethod.GET)
     public void findPLaces(@PathVariable("query") final String query) {
         LOG.info(String.format("Receiving request to find %s", query));
+
+        foursquareApi.findVenues(query);
     }
 
 }
