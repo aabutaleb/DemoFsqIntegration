@@ -24,6 +24,11 @@ public class FoursquareController {
     @Autowired
     private FoursquareApi foursquareApi;
 
+    /**
+     * Method that serves Foursquare results to the view according to the query
+     * @param query
+     * @return
+     */
     @RequestMapping(value = "/find/{query}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Venue> findPLaces(@PathVariable("query") final String query) {
         LOG.info(String.format("Receiving request to find %s", query));
