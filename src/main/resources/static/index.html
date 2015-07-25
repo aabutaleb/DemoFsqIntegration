@@ -13,9 +13,10 @@
 <div class="container">
     <div ng-controller="MainController" ng-cloak class="ng-cloak">
         <div style="padding:20px 0px 60px 0px">
-            <span class="col-md-1" style="font-weight:bold">Search</span>
+            <span class="col-md-1" style="font-weight:bold;padding-top:5px">Search</span>
 			<span class="col-md-3">
-			<input type="text" class="form-control ng-valid ng-dirty" ng-model="searchKeyword">
+			<input type="text" class="form-control ng-valid ng-dirty" ng-model="searchKeyword" ng-keyup="$event.keyCode == 13 && search()"
+                    placeholder="Press enter to search...">
 			</span>
         </div>
 

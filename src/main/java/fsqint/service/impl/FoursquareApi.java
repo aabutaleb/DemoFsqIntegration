@@ -10,7 +10,9 @@ import fsqint.service.exception.FoursquareServiceException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by amin on 25/07/15.
@@ -39,7 +41,10 @@ public class FoursquareApi {
 
     public List<Venue> findVenues(final String name){
         Client client = Client.create();
-        final WebResource webResource2 = client.resource(Utils.getServiceURL(getBaseURL() + "/venues/search", id, secret, "near=" + name));
+        Map<String, String> params = new HashMap<>();
+        params.put("near", name);
+
+        final WebResource webResource2 = client.resource(Utils.getServiceURL(getBaseURL() + "/venues/search", id, secret, params));
 
         final ClientResponse rs = webResource2.accept("application/json").get(ClientResponse.class);
 

@@ -9,6 +9,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
@@ -32,7 +35,10 @@ public class ApplicationTests {
     @Test
     public void UtilServiceUrlTest(){
         String now = Utils.formatCurrentDate();
-        String url = Utils.getServiceURL("http://test", "id", "secret", "query=abcd");
+        Map<String, String> params = new HashMap<>();
+        params.put("query", "abcd");
+
+        String url = Utils.getServiceURL("http://test", "id", "secret", params);
 
         Assert.assertNotNull(url);
         Assert.assertEquals("http://test?client_id=id&client_secret=secret&v="+now+"&query=abcd", url);
