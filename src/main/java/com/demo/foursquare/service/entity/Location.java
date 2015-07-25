@@ -1,4 +1,4 @@
-package fsqint.service.entity;
+package com.demo.foursquare.service.entity;
 
 
 /**

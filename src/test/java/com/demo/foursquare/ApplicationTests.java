@@ -1,9 +1,8 @@
-package fsqint;
+package com.demo.foursquare;
 
-import com.sun.javafx.binding.StringFormatter;
-import fsqint.service.converter.Converter;
-import fsqint.service.entity.Location;
-import fsqint.service.entity.Venue;
+import com.demo.foursquare.service.converter.Converter;
+import com.demo.foursquare.service.entity.Location;
+import com.demo.foursquare.service.entity.Venue;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;

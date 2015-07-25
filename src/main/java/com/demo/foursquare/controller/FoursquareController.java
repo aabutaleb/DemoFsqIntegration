@@ -1,7 +1,7 @@
-package fsqint.controller;
+package com.demo.foursquare.controller;
 
-import fsqint.service.entity.Venue;
-import fsqint.service.impl.FoursquareApi;
+import com.demo.foursquare.service.FoursquareApi;
+import com.demo.foursquare.service.entity.Venue;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,9 +17,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/foursquare")
-public class FsqController {
+public class FoursquareController {
 
-    private static final Logger LOG = Logger.getLogger(FsqController.class);
+    private static final Logger LOG = Logger.getLogger(FoursquareController.class);
 
     @Autowired
     private FoursquareApi foursquareApi;

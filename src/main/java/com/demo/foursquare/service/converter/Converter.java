@@ -1,8 +1,8 @@
-package fsqint.service.converter;
+package com.demo.foursquare.service.converter;
 
-import fsqint.service.entity.Location;
-import fsqint.service.entity.Venue;
-import fsqint.service.exception.ConversionException;
+import com.demo.foursquare.service.entity.Location;
+import com.demo.foursquare.service.entity.Venue;
+import com.demo.foursquare.service.exception.ConversionException;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.MissingNode;

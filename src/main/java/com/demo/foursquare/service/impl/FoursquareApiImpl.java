@@ -1,12 +1,13 @@
-package fsqint.service.impl;
+package com.demo.foursquare.service.impl;
 
+import com.demo.foursquare.Utils;
+import com.demo.foursquare.service.FoursquareApi;
+import com.demo.foursquare.service.converter.Converter;
+import com.demo.foursquare.service.entity.Venue;
+import com.demo.foursquare.service.exception.FoursquareServiceException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import fsqint.Utils;
-import fsqint.service.converter.Converter;
-import fsqint.service.entity.Venue;
-import fsqint.service.exception.FoursquareServiceException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 
 @Service
-public class FoursquareApi {
+public class FoursquareApiImpl implements FoursquareApi {
 
     @Value("${4sq.client.id}")
     private String id;
@@ -35,10 +36,11 @@ public class FoursquareApi {
     @Value("${4sq.server.version}")
     private String serviceVersion;
 
-    public FoursquareApi() {
+    public FoursquareApiImpl() {
         super();
     }
 
+    @Override
     public List<Venue> findVenues(final String name){
         Client client = Client.create();
         Map<String, String> params = new HashMap<>();

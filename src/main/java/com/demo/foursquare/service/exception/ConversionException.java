@@ -1,4 +1,4 @@
-package fsqint.service.exception;
+package com.demo.foursquare.service.exception;
 
 /**
  * Created by amin on 25/07/15.
